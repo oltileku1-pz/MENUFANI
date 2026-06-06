@@ -1,0 +1,78 @@
+{
+  "shop": {
+    "name": "FANI BERBER ",
+    "address": "",
+    "phone": "+383 49 691 409",
+    "instagram": "",
+    "workingHours": {
+      "weekdays": "E HËNE - E SHTUNE: 08:00 - 20:00",
+      "sunday": "E DIELE: MBYLLUR"
+    }
+  },
+  "categories": [
+    {
+      "id": "haircuts",
+      "name": "Haircuts",
+      "services": [
+        {
+          "id": "h1",
+          "name": "Qethje Normale",
+          "price": 4,
+          "visible": true
+        },
+        {
+          "id": "h2",
+          "name": "Qethje",
+          "price": 5,
+          "visible": true
+        },
+        {
+          "id": "s_vtfopmsab",
+          "name": "Ngjyrosja e flokëve",
+          "price": 10,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "beard",
+      "name": "Beard Services",
+      "services": [
+        {
+          "id": "b1",
+          "name": "Rregullimi i mjekrres",
+          "price": 2,
+          "visible": true
+        },
+        {
+          "id": "b2",
+          "name": "Ngjyrosja e mjekrres",
+          "price": 5,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "packages",
+      "name": "Hair & Beard Packages",
+      "services": []
+    },
+    {
+      "id": "kids",
+      "name": "Kids Haircuts",
+      "services": []
+    },
+    {
+      "id": "treatments",
+      "name": "Premium Treatments",
+      "services": [
+        {
+          "id": "t1",
+          "name": "Larja",
+          "price": 3,
+          "visible": true
+        }
+      ]
+    }
+  ]
+}
