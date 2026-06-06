@@ -21,7 +21,9 @@ if (process.env.DATABASE_URL) {
     connectionString: process.env.DATABASE_URL,
     ssl: {
       rejectUnauthorized: false // Required for many hosting providers like Supabase/Neon
-    }
+    },
+    connectionTimeoutMillis: 4000, // Timeout connection after 4 seconds
+    query_timeout: 4000 // Timeout query after 4 seconds
   });
   useDb = true;
 
@@ -80,26 +82,42 @@ function authMiddleware(req, res, next) {
   next();
 }
 
+// Helper to read local menu file
+function readLocalMenu(res) {
+  fs.readFile(DATA_FILE, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to read menu data.' });
+    }
+    res.json(JSON.parse(data));
+  });
+}
+
+// Helper to save local menu file
+function saveLocalMenu(newData, res) {
+  fs.writeFile(DATA_FILE, JSON.stringify(newData, null, 2), 'utf8', (err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to save menu data.' });
+    }
+    res.json({ success: true, message: 'Menuja u ruajt me sukses!' });
+  });
+}
+
 // API to get menu
 app.get('/api/menu', async (req, res) => {
   if (useDb) {
     try {
       const result = await pool.query('SELECT data FROM menu_config WHERE id = 1');
       if (result.rows.length === 0) {
-        return res.status(404).json({ error: 'Menu data not found in database.' });
+        console.warn("Menu data not found in database. Trying local file fallback...");
+        return readLocalMenu(res);
       }
       res.json(result.rows[0].data);
     } catch (err) {
-      console.error("Error fetching menu from DB:", err);
-      res.status(500).json({ error: 'Failed to read menu data from database.' });
+      console.error("Error fetching menu from DB, falling back to local file:", err);
+      readLocalMenu(res);
     }
   } else {
-    fs.readFile(DATA_FILE, 'utf8', (err, data) => {
-      if (err) {
-        return res.status(500).json({ error: 'Failed to read menu data.' });
-      }
-      res.json(JSON.parse(data));
-    });
+    readLocalMenu(res);
   }
 });
 
@@ -118,16 +136,11 @@ app.post('/api/menu', authMiddleware, async (req, res) => {
       );
       res.json({ success: true, message: 'Menuja u përditësua me sukses në databazë!' });
     } catch (err) {
-      console.error("Error updating menu in DB:", err);
-      res.status(500).json({ error: 'Dështoi ruajtja e menusë në databazë.' });
+      console.error("Error updating menu in DB, falling back to local file:", err);
+      saveLocalMenu(newData, res);
     }
   } else {
-    fs.writeFile(DATA_FILE, JSON.stringify(newData, null, 2), 'utf8', (err) => {
-      if (err) {
-        return res.status(500).json({ error: 'Failed to save menu data.' });
-      }
-      res.json({ success: true, message: 'Menuja u ruajt me sukses!' });
-    });
+    saveLocalMenu(newData, res);
   }
 });
 
