@@ -4,17 +4,40 @@
     {
       "src": "server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "admin.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "style.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "admin-style.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "LogoFANI.png",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/(.*)",
       "dest": "server.js"
+    },
+    {
+      "src": "/admin",
+      "dest": "admin.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
-  ],
-  "functions": {
-    "server.js": {
-      "includeFiles": "*.{html,css,png,json}"
-    }
-  }
+  ]
 }
