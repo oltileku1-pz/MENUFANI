@@ -192,6 +192,27 @@ body {
   letter-spacing: 1px;
 }
 
+.category-name-input {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--gold-primary) !important;
+  letter-spacing: 1px;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px dashed rgba(212, 175, 55, 0.2) !important;
+  width: 100%;
+  padding: 4px 0 !important;
+  border-radius: 0 !important;
+  font-weight: 600;
+  outline: none;
+  transition: var(--transition);
+}
+
+.category-name-input:focus {
+  border-bottom-color: var(--gold-primary) !important;
+  box-shadow: none !important;
+}
+
 /* Service Item */
 .service-item {
   display: flex;

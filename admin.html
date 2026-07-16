@@ -201,7 +201,7 @@
 
         catCard.innerHTML = `
           <div class="category-card-header">
-            <h4>${category.name}</h4>
+            <input type="text" class="category-name-input" value="${category.name}" onchange="updateCategory('${category.id}', this.value)">
           </div>
           <div class="services-sortable-list" id="list-${category.id}">
             ${servicesHtml}
@@ -227,6 +227,13 @@
     }
 
     // Helper functions to modify state
+    function updateCategory(catId, value) {
+      const category = menuData.categories.find(c => c.id === catId);
+      if (category) {
+        category.name = value;
+      }
+    }
+
     function updateService(catId, serviceId, field, value) {
       const category = menuData.categories.find(c => c.id === catId);
       if (category) {

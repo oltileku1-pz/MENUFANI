@@ -12,7 +12,7 @@
   "categories": [
     {
       "id": "haircuts",
-      "name": "Haircuts",
+      "name": "Qethje",
       "services": [
         {
           "id": "h1",
@@ -36,7 +36,7 @@
     },
     {
       "id": "beard",
-      "name": "Beard Services",
+      "name": "Rregullimi i Mjekrës",
       "services": [
         {
           "id": "b1",
@@ -54,17 +54,17 @@
     },
     {
       "id": "packages",
-      "name": "Hair & Beard Packages",
+      "name": "Paketa (Flokë & Mjekër)",
       "services": []
     },
     {
       "id": "kids",
-      "name": "Kids Haircuts",
+      "name": "Qethje për Fëmijë",
       "services": []
     },
     {
       "id": "treatments",
-      "name": "Premium Treatments",
+      "name": "Trajtime Premium",
       "services": [
         {
           "id": "t1",
