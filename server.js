@@ -116,8 +116,8 @@ app.post('/api/menu', async (req, res) => {
       );
       res.json({ success: true, message: 'Menuja u përditësua me sukses në databazë!' });
     } catch (err) {
-      console.error("Error updating menu in DB, falling back to local file:", err);
-      saveLocalMenu(newData, res);
+      console.error("Error updating menu in DB:", err);
+      res.status(500).json({ error: 'Gabim në databazë: ' + err.message });
     }
   } else {
     saveLocalMenu(newData, res);
