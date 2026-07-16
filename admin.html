@@ -290,7 +290,7 @@
     }
 
     // Save All Data
-    async function saveAllData(password = null) {
+    async function saveAllData() {
       // Gather Shop Details
       menuData.shop.name = document.getElementById('shopNameInput').value;
       menuData.shop.address = document.getElementById('shopAddressInput').value;
@@ -299,34 +299,14 @@
       menuData.shop.workingHours.weekdays = document.getElementById('shopHoursWeekdaysInput').value;
       menuData.shop.workingHours.sunday = document.getElementById('shopHoursSundayInput').value;
 
-      // Use stored password or passed password if present
-      const token = password || localStorage.getItem('admin_password') || '';
-
       try {
-        const headers = {
-          'Content-Type': 'application/json'
-        };
-        
-        if (token) {
-          headers['Authorization'] = `Bearer ${token}`;
-        }
-
         const response = await fetch('/api/menu', {
           method: 'POST',
-          headers: headers,
+          headers: {
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify(menuData)
         });
-
-        if (response.status === 401) {
-          // Password needed or incorrect
-          const inputPassword = prompt("Fjalëkalimi i administratorit kërkohet për të ruajtur ndryshimet:");
-          if (inputPassword !== null) {
-            localStorage.setItem('admin_password', inputPassword);
-            // Retry save with the new password
-            return saveAllData(inputPassword);
-          }
-          return;
-        }
 
         const result = await response.json();
         if (result.success) {

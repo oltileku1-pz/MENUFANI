@@ -61,26 +61,6 @@ async function initializeDatabase() {
   }
 }
 
-// Simple Admin Authentication Middleware
-function authMiddleware(req, res, next) {
-  const adminPassword = process.env.ADMIN_PASSWORD;
-  if (!adminPassword) {
-    // If no password is set, allow the request to pass through
-    return next();
-  }
-
-  const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ error: 'Fjalëkalimi i administratorit kërkohet.' });
-  }
-
-  const token = authHeader.split(' ')[1];
-  if (token !== adminPassword) {
-    return res.status(401).json({ error: 'Fjalëkalim i gabuar.' });
-  }
-
-  next();
-}
 
 // Helper to read local menu file
 function readLocalMenu(res) {
@@ -121,8 +101,8 @@ app.get('/api/menu', async (req, res) => {
   }
 });
 
-// API to update menu (Protected by authMiddleware)
-app.post('/api/menu', authMiddleware, async (req, res) => {
+// API to update menu
+app.post('/api/menu', async (req, res) => {
   const newData = req.body;
   if (!newData || !newData.shop || !newData.categories) {
     return res.status(400).json({ error: 'Format i pasaktë i të dhënave.' });
