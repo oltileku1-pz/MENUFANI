@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FANI - Admin Dashboard</title>
+  <title>FANI - Paneli i Administrimit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 <body>
 
   <!-- Toast Notification -->
-  <div class="toast" id="toast">Changes saved successfully!</div>
+  <div class="toast" id="toast">Ndryshimet u ruajtën me sukses!</div>
 
   <div class="luxury-bg-pattern"></div>
 
@@ -30,11 +30,11 @@
       <div class="actions">
         <a href="/" target="_blank" class="btn btn-secondary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-          View Live Menu
+          Shiko Menunë Live
         </a>
         <button onclick="saveAllData()" class="btn btn-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-          Save All Changes
+          Ruaj të Gjitha Ndryshimet
         </button>
       </div>
     </div>
@@ -46,8 +46,8 @@
       <!-- Left Panel: Menu Editing -->
       <div class="editor-panel">
         <div class="panel-header">
-          <h2>Manage Services & Prices</h2>
-          <p>Drag items to reorder them within categories.</p>
+          <h2>Menaxho Shërbimet & Çmimet</h2>
+          <p>Tërhiqni artikujt për t'i renditur brenda kategorive.</p>
         </div>
 
         <div id="categoriesContainer" class="categories-list">
@@ -60,59 +60,59 @@
         
         <!-- QR Code Card -->
         <div class="settings-card">
-          <h3>QR Code Generator</h3>
-          <p class="card-desc">Scan this code to view the price menu. Download it to print on your mirrors or tables.</p>
+          <h3>Gjeneratori i QR Kodit</h3>
+          <p class="card-desc">Skanoni këtë kod për të parë menunë e çmimeve. Shkarkojeni për ta printuar në pasqyrat ose tavolinat tuaja.</p>
           
           <div class="qr-preview-box">
             <div id="qrcode"></div>
           </div>
 
           <div class="form-group">
-            <label for="qrUrl">Menu Link / URL</label>
-            <input type="text" id="qrUrl" placeholder="http://your-domain.com" oninput="regenerateQR()">
-            <small class="helper-text">This URL is embedded in the QR code. Keep it updated with your live website address.</small>
+            <label for="qrUrl">Linku / URL e Menusë</label>
+            <input type="text" id="qrUrl" placeholder="http://domaini-juaj.com" oninput="regenerateQR()">
+            <small class="helper-text">Kjo URL është integruar në QR kod. Mbajeni të përditësuar me adresën e faqes suaj live.</small>
           </div>
 
           <button onclick="downloadQR()" class="btn btn-gold btn-full">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-            Download High Quality QR (PNG)
+            Shkarko QR me Cilësi të Lartë (PNG)
           </button>
         </div>
 
         <!-- Shop Info Card -->
         <div class="settings-card">
-          <h3>Shop Details</h3>
-          <p class="card-desc">Update the address, hours, and contact details shown on your price menu.</p>
+          <h3>Detajet e Dyqanit</h3>
+          <p class="card-desc">Përditësoni adresën, orarin dhe detajet e kontaktit që shfaqen në menunë e çmimeve.</p>
           
           <div class="form-group">
-            <label for="shopNameInput">Shop Name</label>
+            <label for="shopNameInput">Emri i Dyqanit</label>
             <input type="text" id="shopNameInput" placeholder="FANI BARBER SHOP">
           </div>
 
           <div class="form-group">
-            <label for="shopAddressInput">Address</label>
+            <label for="shopAddressInput">Adresa</label>
             <input type="text" id="shopAddressInput" placeholder="Rruga UÇK, Prishtinë">
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="shopPhoneInput">Phone Number</label>
+              <label for="shopPhoneInput">Numri i Telefonit</label>
               <input type="text" id="shopPhoneInput" placeholder="+383 49 123 456">
             </div>
             <div class="form-group">
-              <label for="shopInstagramInput">Instagram Handle</label>
+              <label for="shopInstagramInput">Emri në Instagram</label>
               <input type="text" id="shopInstagramInput" placeholder="fani.barbershop">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="shopHoursWeekdaysInput">Working Hours (Mon-Sat)</label>
-            <input type="text" id="shopHoursWeekdaysInput" placeholder="Mon - Sat: 09:00 - 21:00">
+            <label for="shopHoursWeekdaysInput">Orari i Punës (Hën-Sht)</label>
+            <input type="text" id="shopHoursWeekdaysInput" placeholder="E Hënë - E Shtunë: 09:00 - 21:00">
           </div>
 
           <div class="form-group">
-            <label for="shopHoursSundayInput">Working Hours (Sunday)</label>
-            <input type="text" id="shopHoursSundayInput" placeholder="Sunday: Closed">
+            <label for="shopHoursSundayInput">Orari i Punës (E Diel)</label>
+            <input type="text" id="shopHoursSundayInput" placeholder="E Diel: Mbyllur">
           </div>
         </div>
 
